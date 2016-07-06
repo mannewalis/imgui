@@ -2870,15 +2870,15 @@ void ImGui::RenderTextClipped(const ImVec2& pos_min, const ImVec2& pos_max, cons
 }
 
 // Render a rectangle shaped with optional rounding and borders
-void ImGui::RenderFrame(ImVec2 p_min, ImVec2 p_max, ImU32 fill_col, bool border, float rounding)
+void ImGui::RenderFrame(ImVec2 p_min, ImVec2 p_max, ImU32 fill_col, bool border, float rounding, int rounding_corners)
 {
     ImGuiWindow* window = GetCurrentWindow();
 
-    window->DrawList->AddRectFilled(p_min, p_max, fill_col, rounding);
+    window->DrawList->AddRectFilled(p_min, p_max, fill_col, rounding, rounding_corners);
     if (border && (window->Flags & ImGuiWindowFlags_ShowBorders))
     {
-        window->DrawList->AddRect(p_min+ImVec2(1,1), p_max+ImVec2(1,1), GetColorU32(ImGuiCol_BorderShadow), rounding);
-        window->DrawList->AddRect(p_min, p_max, GetColorU32(ImGuiCol_Border), rounding);
+        window->DrawList->AddRect(p_min+ImVec2(1,1), p_max+ImVec2(1,1), GetColorU32(ImGuiCol_BorderShadow), rounding, rounding_corners);
+        window->DrawList->AddRect(p_min, p_max, GetColorU32(ImGuiCol_Border), rounding, rounding_corners);
     }
 }
 
